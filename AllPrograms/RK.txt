@@ -1,0 +1,24 @@
+x0 = input("Enter x0 value: ");
+y0 = input("Enter y0 value: ");
+h = input("Enter h value: ");
+X = input("Enter X value: ");
+f = @(x,y)(1/x^2 - y/x);
+
+n = (X-x0)/h;
+k1 = h*f(x0, y0);
+k2 = h*f(x0 + h/2 , y0 + k1/2);
+k3 = h*f(x0 + h/2, y0 + k2/2);
+k4 = h*f(x0 + h, y0 + k3);
+
+for i=1:n
+
+    k1 = h*f(x0, y0);
+    k2 = h*f(x0 + h/2 , y0 + k1/2);
+    k3 = h*f(x0 + h/2, y0 + k2/2);
+    k4 = h*f(x0 + h, y0 + k3);
+
+    y0 = y0 + (1/6)*(k1+2*k2+2*k3+k4);
+end
+
+fprintf("y(%d) = %.4f", X, y0)
+

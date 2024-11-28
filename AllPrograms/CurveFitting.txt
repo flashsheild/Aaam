@@ -1,0 +1,54 @@
+% 1
+x=[-0.2,0.1,0.0,0.1,0.2]
+y=[1.2214,1.1052,1,0.9048,0.8187]
+p=polyfit(x,y,3)
+plot(x,y,'pk')
+X=min(x) : 0.1 : max(x)
+Y=polyval(p,X)
+plot(X,Y,"r")
+
+% 2
+x=[-6,-4,-2,0,2,4,6]
+y=[-0.2,0.8,-1.6,3.5,3.1,4.9,3.9]
+p=polyfit(x,y,3)
+plot(x,y,'b')
+hold on
+X=min(x) : 2 :max(x) % x coff of poly
+Y=polyval(p,x)
+plot(X,Y)
+hold off
+
+% 3
+% Given data
+x = [2, 4, 6, 8, 10, 12, 14, 16];
+y = [4.9462, 8.1549, 13.4451, 22.1672, 36.5475, 60.2566, 99.3464, 63.7945];
+
+% Logarithm of y
+logy = log(y);
+
+% Fit a line to log(y) vs x
+p = polyfit(x, logy, 1);
+
+% Exponential coefficients
+a = exp(p(2));
+b = p(1);
+
+% Create a smoother range of X values for plotting the fitted exponential curve
+X = min(x) : 0.1 : max(x);
+
+% Compute the corresponding Y values for the exponential model
+Y = a .* exp(b .* X);
+
+% Plot the original data
+plot(x, y, 'ro', 'DisplayName', 'Original Data');
+hold on;
+
+% Plot the fitted exponential curve
+plot(X, Y, 'b-', 'DisplayName', 'Fitted Exponential Curve');
+
+% Add labels and legend
+xlabel('x');
+ylabel('y');
+legend('show');
+
+hold off;

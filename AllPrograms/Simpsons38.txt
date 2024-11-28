@@ -1,0 +1,23 @@
+syms x 
+func = input("Enter your function :\n ");
+x0 = input("Enter lower limit :\n ");
+xn = input("Enter upper limit :\n ");
+n = input("Enter the no.of parts :\n ");
+f = inline(func);
+h = (xn-x0)/n;
+sub3 = 0;
+sub = 0;
+for i = 1 : n-1 
+    if mod(i,3)==0
+    xmulti = x0 + i*h;
+    sub3 = sub3 + f(xmulti);
+    else
+    xeven = x0 + i*h;
+    sub = sub + f(xeven);
+    end
+end
+subeven
+subodd
+final = (3*h/8)*(f(x0)+f(xn)+2*sub3 + 3*sub)
+
+ 

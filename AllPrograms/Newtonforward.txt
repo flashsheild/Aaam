@@ -1,0 +1,30 @@
+x = input('Enter xi values as an array: ');
+y = input('Enter yi values as an array: ');
+X = input('Enter X value: ');
+n = length(x);
+h = x(2) - x(1);
+D = zeros(n);
+
+for i = 1:n
+    D(i,1) = y(i);
+end
+
+for j = 2:n
+    for i = 1:n-j+1
+        D(i,j) = D(i+1,j-1) - D(i,j-1);
+    end
+end
+
+y_interpolated = D(1,1);
+product = 1;
+p = (X - x(1)) / h;
+
+for i = 1:n-1
+    product = product * (p - (i - 1));
+    y_interpolated = y_interpolated + (product * D(1,i+1)) / factorial(i);
+end
+
+fprintf('The interpolated value at X = %.2f is %.4f\n', X, y_interpolated);
+
+
+%newton forward
